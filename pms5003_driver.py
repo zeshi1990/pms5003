@@ -1,3 +1,5 @@
+import Adafruit_BBIO.UART as UART
+UART.setup("UART1")
 import serial
 import datetime
 import struct
@@ -112,7 +114,7 @@ class PMS5003(serial.Serial):
 
 
 def main():
-    sensor = PMS5003(port="/dev/tty.wchusbserial1420", baudrate=9600)
+    sensor = PMS5003(port="/dev/ttyO1", baudrate=9600)
     sensor.initialize()
     time.sleep(2)
     print "Start reading passive"
