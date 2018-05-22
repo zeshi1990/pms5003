@@ -37,12 +37,13 @@ class MQTTCONN:
         if self.listener:
             self._mqttc.subscribe(self.topic, qos=1)
 
-    def __on_message(client, userdata, msg):
+    def __on_message(self, client, userdata, msg):
         print(msg.topic + " " + str(msg.payload))
 
     def publish(self, topic, payload):
         sleep(0.5)
         if self.connect:
+            print("sending data 10")
             self._mqttc.publish(topic, payload, qos=1)
 
     def subscribe(self):
@@ -62,4 +63,7 @@ def main():
 
     mqttconn = MQTTCONN(awshost, awsport, topic, caPath, certPath, keyPath, listener=False)
     while True:
-        mqttconn.publish()
+        mqttconn.publish(topic, 10)
+
+if __name__ == "__main__":
+   main()
