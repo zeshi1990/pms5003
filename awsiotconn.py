@@ -61,5 +61,4 @@ def main():
     keyPath = "cert/privkey.pem"
 
     mqttconn = MQTTCONN(awshost, awsport, topic, caPath, certPath, keyPath, listener=False)
-    while True:
-        mqttconn.publish()
+    mqttconn.subscribe()
