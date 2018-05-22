@@ -37,7 +37,7 @@ class MQTTCONN:
         if self.listener:
             self._mqttc.subscribe(self.topic, qos=1)
 
-    def __on_message(client, userdata, msg):
+    def __on_message(self, client, userdata, msg):
         print(msg.topic + " " + str(msg.payload))
 
     def publish(self, topic, payload):
@@ -46,8 +46,7 @@ class MQTTCONN:
             self._mqttc.publish(topic, payload, qos=1)
 
     def subscribe(self):
-        if self.connect:
-            self._mqttc.loop_forever()
+        self._mqttc.loop_forever()
 
 
 def main():
@@ -60,5 +59,8 @@ def main():
     certPath = "cert/cert.pem"
     keyPath = "cert/privkey.pem"
 
-    mqttconn = MQTTCONN(awshost, awsport, topic, caPath, certPath, keyPath, listener=False)
+    mqttconn = MQTTCONN(awshost, awsport, topic, caPath, certPath, keyPath, listener=True)
     mqttconn.subscribe()
+
+if __name__ == "__main__":
+    main()
