@@ -57,13 +57,15 @@ class PMS5003(serial.Serial):
             sum_cmd_return = sum(cmd_return)
         self.write(mode_cmd)
         if mode == "wakeup":
+            ss = self.readline()
+	    print("wakeup: {}".format(ss))
             return 0
         ss = self.read(8)
         res = sum([ord(c) for c in ss])
         if res == sum_cmd_return:
             print "The {} mode is set!".format(mode)
         else:
-            print "The {} model set failed!".format(mode)
+            print "The {} mode set failed!".format(mode)
         return 0
 
     @staticmethod
@@ -117,15 +119,14 @@ def main():
     sensor.initialize()
     time.sleep(2)
     print "Start reading passive"
-    data = sensor.read_passive()
-    print data
-    time.sleep(2)
-    sensor.set_mode("sleep")
-    time.sleep(5)
-    sensor.set_mode("wakeup")
-    time.sleep(5)
-    data = sensor.read_passive()
-    print data
+    while True:
+    	data = sensor.read_passive()
+    	print data
+    	time.sleep(2)
+    	sensor.set_mode("sleep")
+    	time.sleep(5)
+    	sensor.set_mode("wakeup")
+    	time.sleep(5)
 
 
 if __name__ == "__main__":

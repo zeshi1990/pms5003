@@ -24,11 +24,11 @@ def main():
         pm100 = data["pm100"]
         payload = "pm25, {0}, pm10, {1}, pm100, {2}".format(pm25, pm10, pm100)
         mqttconn.publish("home_air_quality", payload)
-        time.sleep(2)
+        time.sleep(10)
         sensor.set_mode("sleep")
-        time.sleep(2)
+        time.sleep(10)
         sensor.set_mode("wakeup")
-        time.sleep(2)
+        time.sleep(10)
 
 
 if __name__ == "__main__":
