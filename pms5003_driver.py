@@ -119,13 +119,13 @@ def main():
     time.sleep(2)
     print "Start reading passive"
     while True:
-    	data = sensor.read_passive()
-    	print data
-    	time.sleep(2)
-    	sensor.set_mode("sleep")
-    	time.sleep(5)
-    	sensor.set_mode("wakeup")
-    	time.sleep(5)
+        data = sensor.read_passive()
+        print data
+        time.sleep(2)
+        sensor.set_mode("sleep")
+        time.sleep(5)
+        sensor.set_mode("wakeup")
+        time.sleep(5)
 
 
 if __name__ == "__main__":
