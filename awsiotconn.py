@@ -57,7 +57,7 @@ def main():
     awshost = "data.iot.us-east-2.amazonaws.com"
     awsport = 8883
     clientId = "pm25Sensor"
-    topic = "pm25"
+    topic = "home_air_quality"
     thingName = "pm25Sensor"
     caPath = "cert/aws-iot-rootCA.crt"
     certPath = "cert/cert.pem"
