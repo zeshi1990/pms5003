@@ -122,11 +122,11 @@ def main():
     while True:
         data = sensor.read_passive()
         print data
-        time.sleep(1)
+        time.sleep(2)
         sensor.set_mode("sleep")
-        time.sleep(1)
+        time.sleep(2)
         sensor.set_mode("wakeup")
-        time.sleep(1)
+        time.sleep(2)
 
 
 if __name__ == "__main__":
