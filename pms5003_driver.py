@@ -60,7 +60,6 @@ class PMS5003(serial.Serial):
             return 0
         ss = self.read(8)
         res = sum([ord(c) for c in ss])
-        print mode, sum_cmd_return, res
         if res == sum_cmd_return:
             print "The {} mode is set!".format(mode)
         else:

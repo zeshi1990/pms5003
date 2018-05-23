@@ -43,7 +43,7 @@ class MQTTCONN:
     def publish(self, topic, payload):
         sleep(0.5)
         if self.connect:
-            print("sending data 10")
+            print("sending data {}".format(payload))
             self._mqttc.publish(topic, payload, qos=1)
 
     def subscribe(self):
