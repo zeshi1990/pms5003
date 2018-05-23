@@ -65,6 +65,7 @@ class PMS5003(serial.Serial):
             print "The {} mode is set!".format(mode)
         else:
             print "The {} mode set failed!".format(mode)
+            time.sleep(1)
             self.set_mode(mode)
         return 0
 
