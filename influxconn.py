@@ -11,10 +11,11 @@ class INFLUXCONN:
         payload_list = payload.split(",")
         len_vals = len(payload_list) / 2
         dt_string = datetime.now().strftime("%Y-%m-%dT%H:%M:%HZ")
+        jsons = []
         for i in range(len_vals):
             dtype = payload_list[i*2].strip()
             val = float(payload_list[i*2+1].strip())
-            json_body = [{
+            json_body = {
                 "measurement": self.table,
                 "tags": {
                     "type": dtype
@@ -23,5 +24,7 @@ class INFLUXCONN:
                 "fields": {
                     "value": val
                 }
-            }]
-            self.client.write_points(json_body)
+            }
+            jsons.append(json_body)
+        self.client.write_points(jsons)
+        return 0
