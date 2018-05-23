@@ -57,7 +57,6 @@ class PMS5003(serial.Serial):
             sum_cmd_return = sum(cmd_return)
         self.write(mode_cmd)
         if mode == "wakeup":
-            ss = self.readall()
             return 0
         ss = self.read(8)
         res = sum([ord(c) for c in ss])
