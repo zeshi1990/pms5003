@@ -65,7 +65,6 @@ class PMS5003(serial.Serial):
             print "The {} mode is set!".format(mode)
         else:
             print "The {} mode set failed!".format(mode)
-            time.sleep(1)
             self.set_mode(mode)
         return 0
 
@@ -123,11 +122,11 @@ def main():
     while True:
         data = sensor.read_passive()
         print data
-        time.sleep(2)
+        time.sleep(1)
         sensor.set_mode("sleep")
-        time.sleep(5)
+        time.sleep(1)
         sensor.set_mode("wakeup")
-        time.sleep(5)
+        time.sleep(1)
 
 
 if __name__ == "__main__":
