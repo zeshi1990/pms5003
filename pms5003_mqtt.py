@@ -21,3 +21,6 @@ def main():
         data = sensor.read_passive()
         print data
         time.sleep(2)
+
+if __name__ == "__main__":
+    main()
