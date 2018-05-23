@@ -10,6 +10,7 @@
 # that will subscribe and show all the messages sent by this program
 
 import paho.mqtt.client as paho
+from influxconn import INFLUXCONN
 import os
 import socket
 import ssl
@@ -22,6 +23,7 @@ class MQTTCONN:
         self.topic = topic
         self.connect = False
         self.listener = listener
+        self._influxc = INFLUXCONN()
         self._mqttc = paho.Client()
         self._mqttc.on_connect = self.__on_connect
         self._mqttc.on_message = self.__on_message
@@ -39,6 +41,7 @@ class MQTTCONN:
 
     def __on_message(self, client, userdata, msg):
         print(msg.topic + " " + str(msg.payload))
+        self._influxc.write_data(msg.payload)
 
     def publish(self, topic, payload):
         sleep(0.5)
