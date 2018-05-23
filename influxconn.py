@@ -14,7 +14,7 @@ class INFLUXCONN:
         for i in range(len_vals):
             dtype = payload_list[i*2].strip()
             val = float(payload_list[i*2+1].strip())
-            json_body = {
+            json_body = [{
                 "measurement": self.table,
                 "tags": {
                     "type": dtype
@@ -23,5 +23,5 @@ class INFLUXCONN:
                 "fields": {
                     "value": val
                 }
-            }
+            }]
             self.client.write_points(json_body)
